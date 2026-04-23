@@ -1,0 +1,124 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img [ref=e7]
+        - heading "AP Field Intelligence" [level=4] [ref=e10]
+      - button "Open settings" [ref=e12] [cursor=pointer]:
+        - img [ref=e13]
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e20] [cursor=pointer]:
+          - text: Total Devices
+          - heading "182" [level=3] [ref=e21]
+        - generic [ref=e23] [cursor=pointer]:
+          - text: OK
+          - heading "66" [level=3] [ref=e24]
+        - generic [ref=e26] [cursor=pointer]:
+          - text: Warning
+          - heading "34" [level=3] [ref=e27]
+        - generic [ref=e29] [cursor=pointer]:
+          - text: Error
+          - heading "60" [level=3] [ref=e30]
+        - generic [ref=e32] [cursor=pointer]:
+          - text: Unknown
+          - heading "22" [level=3] [ref=e33]
+        - generic [ref=e35] [cursor=pointer]:
+          - text: Critical Risk >= 50
+          - heading "2" [level=3] [ref=e36]
+        - generic [ref=e38] [cursor=pointer]:
+          - text: High Risk >= 35
+          - heading "28" [level=3] [ref=e39]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: Top sites by max device risk
+          - generic [ref=e44]: showing 6 / 10
+        - generic [ref=e45]:
+          - generic [ref=e47]:
+            - generic [ref=e48]:
+              - generic [ref=e50]: ● 51
+              - paragraph [ref=e51]: DE, Jena, K510 Karl-Liebknecht-Str./ Schlippenstr.
+              - generic [ref=e52]: 1 device
+            - generic [ref=e53]:
+              - generic [ref=e54]: "Worst: ap-orv1-0047 | risk 51"
+              - generic [ref=e55]: Device in Error state
+              - generic [ref=e56]: CPU load surged 64.3x vs prior week (now 6.4)
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - generic [ref=e61]: ● 51
+              - paragraph [ref=e62]: DE, Jena, K512 Karl-Liebknecht-Str. / Ostschule
+              - generic [ref=e63]: 1 device
+            - generic [ref=e64]:
+              - generic [ref=e65]: "Worst: ap-orv1-0056 | risk 51"
+              - generic [ref=e66]: Device in Error state
+              - generic [ref=e67]: CPU load surged 64.4x vs prior week (now 6.4)
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - generic [ref=e72]: ● 46
+              - paragraph [ref=e73]: DE, Jena, K614 Dornburger Str./ Hufelandweg
+              - generic [ref=e74]: 1 device
+            - generic [ref=e75]:
+              - generic [ref=e76]: "Worst: ap-orv1-0090 | risk 46"
+              - generic [ref=e77]: Device in Warning state
+              - generic [ref=e78]: CPU load surged 197.9x vs prior week (now 19.8)
+          - generic [ref=e80]:
+            - generic [ref=e81]:
+              - generic [ref=e83]: ● 46
+              - paragraph [ref=e84]: DE, Trier, VDE 15 (Friedlich-Ebert-Allee / Lindenstraße)
+              - generic [ref=e85]: 1 device
+            - generic [ref=e86]:
+              - generic [ref=e87]: "Worst: ap-orv1-0171 | risk 46"
+              - generic [ref=e88]: Device in Error state
+              - generic [ref=e89]: Device rebooted within last week (uptime 47% of 7d)
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e94]: ● 46
+              - paragraph [ref=e95]: 007 St. Gallen Schibenertor
+              - generic [ref=e96]: 1 device
+            - generic [ref=e97]:
+              - generic [ref=e98]: "Worst: ap-orv3-0236 | risk 46"
+              - generic [ref=e99]: Device in Warning state
+              - generic [ref=e100]: CPU load surged 132.9x vs prior week (now 13.3)
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - generic [ref=e105]: ● 41
+              - paragraph [ref=e106]: DE, Koln, ZSP302 (Kieskaulerweg)
+              - generic [ref=e107]: 1 device
+            - generic [ref=e108]:
+              - generic [ref=e109]: "Worst: ap-orv3-0225 | risk 41"
+              - generic [ref=e110]: Device in Warning state
+              - generic [ref=e111]: CPU load surged 49.9x vs prior week (now 5.0)
+    - generic [ref=e112]:
+      - generic [ref=e114]:
+        - generic [ref=e115]: "Filter:"
+        - generic [ref=e117]:
+          - textbox "Device type or site keyword" [ref=e118]
+          - group
+        - generic [ref=e119]:
+          - combobox [ref=e120] [cursor=pointer]: All states
+          - textbox
+          - img
+          - group
+        - generic [ref=e121]:
+          - combobox [ref=e122] [cursor=pointer]: Any risk
+          - textbox: "0"
+          - img
+          - group
+        - generic [ref=e123]: 0 devices
+      - table [ref=e125]:
+        - rowgroup [ref=e126]:
+          - row "Device Risk ↓ State Site CPU max 7d CPU growth eMMC wear Disk GB Uptime 7d Last seen" [ref=e127]:
+            - columnheader "Device" [ref=e128] [cursor=pointer]
+            - columnheader "Risk ↓" [ref=e129] [cursor=pointer]
+            - columnheader "State" [ref=e130] [cursor=pointer]
+            - columnheader "Site" [ref=e131] [cursor=pointer]
+            - columnheader "CPU max 7d" [ref=e132] [cursor=pointer]
+            - columnheader "CPU growth" [ref=e133] [cursor=pointer]
+            - columnheader "eMMC wear" [ref=e134] [cursor=pointer]
+            - columnheader "Disk GB" [ref=e135] [cursor=pointer]
+            - columnheader "Uptime 7d" [ref=e136] [cursor=pointer]
+            - columnheader "Last seen" [ref=e137] [cursor=pointer]
+        - rowgroup [ref=e138]:
+          - row "Loading fleet data..." [ref=e139]:
+            - cell "Loading fleet data..." [ref=e140]
