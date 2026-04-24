@@ -7,9 +7,10 @@
  * POST /api/refresh       force a cache refresh
  */
 import express from 'express';
-import cors    from 'cors';
+import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { existsSync } from 'fs';
 import dotenv from 'dotenv';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -29,7 +30,7 @@ import {
 } from './metrics.js';
 import { buildFleet } from './scorer.js';
 
-const app  = express();
+const app = express();
 const PORT = process.env.PORT || 3001;
 const INTERVAL = parseInt(process.env.REFRESH_INTERVAL_MS || '900000', 10);
 
@@ -56,9 +57,9 @@ async function refresh() {
       fetchEmmcLifetimeB(),
       fetchBoardUptime(),
     ]);
-    cache.fleet       = buildFleet(states, cpuWeek, cpuPrior, disk, lastSeen, restarts, emmcEol, emmcLifeA, emmcLifeB, boardUptime);
+    cache.fleet = buildFleet(states, cpuWeek, cpuPrior, disk, lastSeen, restarts, emmcEol, emmcLifeA, emmcLifeB, boardUptime);
     cache.refreshedAt = new Date().toISOString();
-    cache.error       = null;
+    cache.error = null;
     console.log(`[collector] done – ${cache.fleet.length} devices, at ${cache.refreshedAt}`);
   } catch (err) {
     cache.error = err.message;
@@ -75,10 +76,10 @@ setInterval(refresh, INTERVAL);
 // ── Routes ───────────────────────────────────────────────────────────────────
 app.get('/api/status', (_req, res) => {
   res.json({
-    devices:     cache.fleet.length,
+    devices: cache.fleet.length,
     refreshedAt: cache.refreshedAt,
-    refreshing:  cache.refreshing,
-    error:       cache.error,
+    refreshing: cache.refreshing,
+    error: cache.error,
     nextRefreshMs: cache.refreshedAt
       ? Math.max(0, INTERVAL - (Date.now() - new Date(cache.refreshedAt).getTime()))
       : 0,
@@ -160,5 +161,13 @@ app.get('/api/summary', (_req, res) => {
     topSites,
   });
 });
+
+// ── Serve client build (production) ──────────────────────────────────────────
+const publicDir = join(__dirname, 'public');
+if (existsSync(publicDir)) {
+  app.use(express.static(publicDir));
+  app.get('*', (_req, res) => res.sendFile(join(publicDir, 'index.html')));
+  console.log('[server] serving static client from', publicDir);
+}
 
 app.listen(PORT, () => console.log(`[server] running on http://localhost:${PORT}`));

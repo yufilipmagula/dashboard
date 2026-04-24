@@ -1,0 +1,12 @@
+services:
+  dashboard:
+    build:
+      context: .
+      args:
+        NPM_TOKEN: ${NPM_TOKEN}
+        NPM_AUTH: ${NPM_AUTH}
+        NPM_REGISTRY_URL: ${NPM_REGISTRY_URL}
+    ports:
+      - "3001:3001"
+    env_file: .env
+    restart: unless-stopped

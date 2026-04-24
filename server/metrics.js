@@ -9,8 +9,8 @@ import { dirname, join } from 'path';
 
 dotenv.config({ path: join(dirname(fileURLToPath(import.meta.url)), '..', '.env') });
 
-const BASE   = process.env.GRAFANA_URL.replace(/\/$/, '');
-const TOKEN  = process.env.GRAFANA_TOKEN;
+const BASE = process.env.GRAFANA_URL.replace(/\/$/, '');
+const TOKEN = process.env.GRAFANA_TOKEN;
 const DS_UID = process.env.PROMETHEUS_DS_UID;
 
 const HEADERS = {
@@ -18,10 +18,15 @@ const HEADERS = {
   'Content-Type': 'application/json',
 };
 
+const FETCH_TIMEOUT_MS = parseInt(process.env.FETCH_TIMEOUT_MS || '30000', 10);
+
 async function queryInstant(expr) {
   const url = `${BASE}/api/datasources/proxy/uid/${DS_UID}/api/v1/query`;
   const params = new URLSearchParams({ query: expr, time: Math.floor(Date.now() / 1000) });
-  const res = await fetch(`${url}?${params}`, { headers: HEADERS });
+  const res = await fetch(`${url}?${params}`, {
+    headers: HEADERS,
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+  });
   if (!res.ok) throw new Error(`Prometheus query failed (${res.status}): ${expr}`);
   const body = await res.json();
   return body.data?.result ?? [];
